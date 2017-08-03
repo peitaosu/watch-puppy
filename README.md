@@ -1,5 +1,7 @@
 # watch-puppy
 
+[![GitHub license](https://img.shields.io/badge/license-WTFPL-blue.svg)](https://raw.githubusercontent.com/peitaosu/watch-puppy/master/LICENSE)
+
 ## What is watch-puppy ?
 
 watch-puppy is a watchdog tool which can be used to observe file system changes (Linux, Windows and OSX), and registry changes (Windows).
