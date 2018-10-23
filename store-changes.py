@@ -32,7 +32,7 @@ def store_changes(fs_logs, store_path):
 
 if __name__ == "__main__":
     fs_watch_log = sys.argv[1]
-    store_path = sys.argv[2]
+    store_path = sys.argv[2] if len(sys.argv) > 2 else ".\\store"
     logs = read_logs(fs_watch_log)
     fs_logs = parse_logs(logs)
     store_changes(fs_logs, store_path)
