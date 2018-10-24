@@ -30,22 +30,7 @@ class RegWatcher():
         self.log = logging.getLogger()
 
     def start(self):
-        values = {(self.reg_root, self.reg_key, "DateTime"): (win32con.REG_DWORD, 1),
-                  (self.reg_root, self.reg_key, "Templates"): (win32con.REG_DWORD, 0),
-                  (self.reg_root, self.reg_key, "UnitConv"): (win32con.REG_DWORD, 0)}
-
         while True:
-            for (hive, key, value_name), (value_type, value) in values.iteritems():
-                handle_with_set_rights = win32api.RegOpenKeyEx(
-                    hive, key, 0, win32con.KEY_SET_VALUE)
-                self.log.info(r"Setting %s\%s\%s = %s" %
-                              (hive, key, value_name, value))
-                win32api.RegSetValueEx(
-                    handle_with_set_rights, value_name, 0, value_type, value)
-                win32api.RegCloseKey(handle_with_set_rights)
-
-            # Open and close the handle here as otherwise the set operation above
-            # will trigger a further round
             handle_to_be_watched = win32api.RegOpenKeyEx(
                 self.reg_root, self.reg_key, 0, win32con.KEY_NOTIFY)
             win32api.RegNotifyChangeKeyValue(
